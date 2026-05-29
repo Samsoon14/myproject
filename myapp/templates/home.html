@@ -1,0 +1,61 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Overthinkers</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/articles/">Articles</a>
+        <a href="/tips/">Tips</a>
+        <a href="/community/">Community</a>
+        <a href="/contact/">Contact</a>
+        {% if user.is_authenticated %}
+        <a href="/logout/">Logout ({{ user.username }})</a>
+        {% else %}
+        <a href="/login/">Login</a>
+        <a href="/register/">Register</a>
+        {% endif %}
+    </nav>
+    <h1>Welcome to Overthinkers</h1>
+    <h2>Understand. Learn. Grow.</h2>
+    <div>
+        <h2>What is Overthinking?</h2>
+        <p>Overthinking is the habit of dwelling excessively on thoughts and worries. Psychologists describe it as rumination — repeatedly focusing on the same idea or situation.</p>
+    </div>
+    <div>
+        <h2>What Experts Say</h2>
+        <p>Psychologist Adam Perkins from King's College London found that overthinkers tend to score high in creativity. Dr. Neha Mehta states that overthinking allows self-reflection and deep analysis when used positively.</p>
+    </div>
+    <div style="display:flex; gap:20px; max-width:900px; margin:20px auto;">
+        <div style="flex:1; border-color:rgba(100,255,100,0.3);">
+            <h2 style="color:#4ade80">Advantages</h2>
+            <p>Better decision-making — overthinkers weigh all pros and cons carefully.</p>
+            <p>Enhanced creativity — constantly exploring possibilities leads to innovative ideas.</p>
+            <p>Problem-solving skills — analyzing issues from multiple angles.</p>
+            <p>Attention to detail — overthinkers notice what others miss.</p>
+            <p>Preparedness — thinking ahead means being ready for various scenarios.</p>
+        </div>
+        <div style="flex:1; border-color:rgba(255,100,100,0.3);">
+            <h2 style="color:#f87171">Disadvantages</h2>
+            <p>Anxiety and stress — excessive thinking leads to mental exhaustion.</p>
+            <p>Paralysis by analysis — even small decisions feel impossible.</p>
+            <p>Sleep problems — an overactive mind disrupts rest.</p>
+            <p>Negative thought spirals — catastrophizing worsens mental health.</p>
+            <p>Missed opportunities — spending too long deciding means acting too late.</p>
+        </div>
+    </div>
+    <h2>Latest Articles</h2>
+    {% for article in articles %}
+    <div>
+        <h4>{{ article.title }}</h4>
+        <p>{{ article.content|truncatewords:20 }}</p>
+    </div>
+    {% empty %}
+    <p>No articles yet! Check back soon.</p>
+    {% endfor %}
+</body>
+</html>

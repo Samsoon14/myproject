@@ -1,0 +1,45 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tips - Overthinkers</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/articles/">Articles</a>
+        <a href="/tips/">Tips</a>
+        <a href="/community/">Community</a>
+        <a href="/contact/">Contact</a>
+        {% if user.is_authenticated %}
+        <a href="/logout/">Logout ({{ user.username }})</a>
+        {% else %}
+        <a href="/login/">Login</a>
+        <a href="/register/">Register</a>
+        {% endif %}
+    </nav>
+    <h1>Tips to Control Overthinking</h1>
+    <div>
+        <h2>1. Write Your Thoughts</h2>
+        <p>Whenever you overthink, write your thoughts on paper. This reduces mental load.</p>
+    </div>
+    <div>
+        <h2>2. Deep Breathing</h2>
+        <p>Breathe in for 5 seconds, hold for 5 seconds, release for 5 seconds. This reduces anxiety.</p>
+    </div>
+    <div>
+        <h2>3. Stay in the Present</h2>
+        <p>Only think about now. Let go of worries about the past and future.</p>
+    </div>
+    <div>
+        <h2>4. Exercise</h2>
+        <p>Walk or exercise for 30 minutes daily. It keeps your mind fresh.</p>
+    </div>
+    <div>
+        <h2>5. Talk to Someone</h2>
+        <p>Share your thoughts with a friend or family member. Don't think alone.</p>
+    </div>
+</body>
+</html>

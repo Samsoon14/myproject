@@ -1,0 +1,44 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community - Overthinkers</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/articles/">Articles</a>
+        <a href="/tips/">Tips</a>
+        <a href="/community/">Community</a>
+        <a href="/contact/">Contact</a>
+        {% if user.is_authenticated %}
+        <a href="/logout/">Logout ({{ user.username }})</a>
+        {% else %}
+        <a href="/login/">Login</a>
+        <a href="/register/">Register</a>
+        {% endif %}
+    </nav>
+    <h1>Community</h1>
+    {% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Share your thoughts..." rows="4" cols="50"></textarea><br><br>
+        <button type="submit">Share</button>
+    </form>
+    {% else %}
+    <p><a href="/login/">Login</a> to share your thoughts!</p>
+    {% endif %}
+    <h2>Community Posts</h2>
+    {% for post in posts %}
+    <div>
+        <strong>{{ post.user.username }}</strong>
+        <p>{{ post.content }}</p>
+        <small>{{ post.date }}</small>
+    </div>
+    {% empty %}
+    <p>No posts yet!</p>
+    {% endfor %}
+</body>
+</html>

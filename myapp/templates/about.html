@@ -1,0 +1,32 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About - Overthinkers</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/articles/">Articles</a>
+        <a href="/tips/">Tips</a>
+        <a href="/community/">Community</a>
+        <a href="/contact/">Contact</a>
+        {% if user.is_authenticated %}
+        <a href="/logout/">Logout ({{ user.username }})</a>
+        {% else %}
+        <a href="/login/">Login</a>
+        <a href="/register/">Register</a>
+        {% endif %}
+    </nav>
+    <h1>About Overthinkers</h1>
+    <p>Overthinkers are people who think too much about everything.</p>
+    <h2>What is Overthinking?</h2>
+    <p>Overthinking is a state where a person keeps thinking about the same thing over and over again.</p>
+    <h2>The Overthinker's Mind</h2>
+    <p>An overthinker's mind is always active. They think about every aspect of every situation.</p>
+    <h2>How to Understand Overthinking?</h2>
+    <p>To understand overthinking, it is important to first observe your own thoughts.</p>
+</body>
+</html>

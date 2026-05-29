@@ -1,0 +1,31 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Overthinkers</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/articles/">Articles</a>
+        <a href="/tips/">Tips</a>
+        <a href="/community/">Community</a>
+        <a href="/contact/">Contact</a>
+        <a href="/login/">Login</a>
+        <a href="/register/">Register</a>
+    </nav>
+    <div class="login-box">
+        <h1>Login</h1>
+        <p>Welcome back to Overthinkers!</p>
+        <form method="post" style="display:flex; flex-direction:column; align-items:center;">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username"><br>
+            <input type="password" name="password" placeholder="Password"><br>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/register/">Register</a></p>
+    </div>
+</body>
+</html>

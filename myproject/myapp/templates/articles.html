@@ -1,0 +1,41 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Articles - Overthinkers</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/articles/">Articles</a>
+        <a href="/tips/">Tips</a>
+        <a href="/community/">Community</a>
+        <a href="/contact/">Contact</a>
+        {% if user.is_authenticated %}
+        <a href="/logout/">Logout ({{ user.username }})</a>
+        {% else %}
+        <a href="/login/">Login</a>
+        <a href="/register/">Register</a>
+        {% endif %}
+    </nav>
+    <h1>Articles</h1>
+    {% for article in articles %}
+    <div>
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+        <small>By Admin Samsoon | {{ article.date }}</small><br><br>
+        {% if user.is_authenticated %}
+        <a href="/articles/like/{{ article.id }}/">
+            <button>❤ Like ({{ article.likes.count }})</button>
+        </a>
+        {% else %}
+        <p><a href="/login/">Login</a> to like this article!</p>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p>No articles yet! Check back soon.</p>
+    {% endfor %}
+</body>
+</html>
